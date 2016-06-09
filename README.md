@@ -27,6 +27,8 @@ The Project is in the BasicAuthInfiniteLoop folder.
 4. Run code in Android (Running Android 4.X) and Press Button
 5. See the logs on CLI by running ```adb logcat -s "InfiniteLoop"``` and 😭.
 
+You can change the ```Boolean badCredentials = true;``` value to ```false``` to see that it works (with no loop) when the credentials are correct.
+
 You will see a non-stop end of the logs as follows:-
 ```
 D/InfiniteLoop( 4292): U:JohnConner P:testpass
