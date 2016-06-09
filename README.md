@@ -2,7 +2,7 @@
 
 There seems to be an Infinite Loop occuring when authenticating using HttpURLConnection on Android with devices running Android 4.x.
 
-## Running Node Server
+## Test Steps
 
 I'm gonna assume you already have node installed and running all this on a OSX.
 
