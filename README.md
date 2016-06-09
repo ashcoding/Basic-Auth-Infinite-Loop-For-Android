@@ -44,6 +44,51 @@ D/InfiniteLoop( 4292): U:JohnConner P:testpass
 D/InfiniteLoop( 4292): U:JohnConner P:testpass
 ```
 
+## Solution
+
+There seems to already be a issue ticket that's been filed. https://code.google.com/p/android/issues/detail?id=7058
+Solution is provided by "pccraftcojp-firstrepo" here https://code.google.com/p/android/issues/detail?id=7058#c4
+
+The solution is
+```java
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+
+public class HttpAuthenticator extends Authenticator {
+	HttpAuthenticator(String id, String password) {
+		mID = id;
+		mPassword = password;
+	}
+	private int mRetryCount = 0;
+	private int mMaxRetryCount = 1;
+	private String mID;
+	private String mPassword;
+	public void clearretryCount() {
+		mRetryCount = 0;
+	}
+	public void setRetryCount(int count) {
+		mRetryCount = count;
+	}
+	public final int getRetryCount() {
+		return mRetryCount;
+	}
+	public void setMaxRetryCount(int count) {
+		mMaxRetryCount = count;
+	}
+	public final int getMaxRetryCount() {
+		return mMaxRetryCount;
+	}
+	protected PasswordAuthentication getPasswordAuthentication() {
+		if (mRetryCount < mMaxRetryCount) {
+			mRetryCount++;
+			return new PasswordAuthentication(mID , mPassword.toCharArray());
+		}
+		return null;
+	}
+}
+```
+
+
 #### License
 This will be under Apache-2.0.  
 Repo by ashcoding.
